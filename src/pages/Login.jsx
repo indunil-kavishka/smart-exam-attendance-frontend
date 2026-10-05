@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Use Netlify's VITE_API_URL if available, otherwise fallback to localhost
-  const handleLogin = async (e) => {
+ const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
