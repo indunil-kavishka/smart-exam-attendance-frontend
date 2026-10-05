@@ -18,7 +18,10 @@ const Login = () => {
     setLoading(true);
 
     // Use Netlify's VITE_API_URL if available, otherwise fallback to localhost
-const response = await axios.post(`${API_URL}/api/auth/login`, {
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+    try {
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
         email,
         password,
       });
