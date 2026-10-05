@@ -26,11 +26,21 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
         password,
       });
 
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
-        email,
-        password,
-      });
+      login(response.data);
+
+      // Role එක අනුව අදාළ Page එකට Redirect කිරීම
+      if (response.data.role === 'ADMIN') {
+        navigate('/admin');
+      } else {
+        navigate('/scan');
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+
+      //--------------------------------
 
       login(response.data);
 
