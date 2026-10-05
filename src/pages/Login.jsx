@@ -12,13 +12,13 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // Use Netlify's VITE_API_URL if available, otherwise fallback to localhost
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    // Use Netlify's VITE_API_URL if available, otherwise fallback to localhost
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
     try {
       const response = await axios.post(`${API_URL}/api/auth/login`, {
@@ -28,7 +28,6 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
       login(response.data);
 
-      // Role එක අනුව අදාළ Page එකට Redirect කිරීම
       if (response.data.role === 'ADMIN') {
         navigate('/admin');
       } else {
@@ -39,7 +38,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
     } finally {
       setLoading(false);
     }
-
+  };
       //--------------------------------
 
       login(response.data);
