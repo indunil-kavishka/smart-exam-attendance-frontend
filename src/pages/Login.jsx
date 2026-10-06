@@ -25,7 +25,7 @@ const Login = () => {
 
       login(response.data);
 
-      // Role එක අනුව අදාළ Page එකට Redirect කිරීම
+      // Redirect role in to there respective page
       if (response.data.role === 'ADMIN') {
         navigate('/admin');
       } else {
